@@ -1,0 +1,223 @@
+
+<style>
+  .phase-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
+  .phase-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+  .phase-badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+  .phase-title { font-size: 16px; font-weight: 500; color: var(--color-text-primary); }
+  .phase-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+  .task-row { display: flex; align-items: flex-start; gap: 8px; padding: 5px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; color: var(--color-text-primary); }
+  .task-row:last-child { border-bottom: none; }
+  .task-check { width: 16px; height: 16px; border: 0.5px solid var(--color-border-secondary); border-radius: 4px; flex-shrink: 0; margin-top: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .task-check.done { background: var(--color-background-success); border-color: var(--color-border-success); }
+  .task-label { flex: 1; line-height: 1.5; }
+  .task-label.done { text-decoration: line-through; color: var(--color-text-tertiary); }
+  .tech-pill { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 12px; margin: 2px; background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); }
+  .section-label { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin: 10px 0 6px; }
+  .progress-bar { height: 4px; border-radius: 2px; background: var(--color-border-tertiary); margin-top: 8px; }
+  .progress-fill { height: 100%; border-radius: 2px; transition: width 0.3s; }
+  .phase-connector { display: flex; justify-content: center; padding: 4px 0; color: var(--color-text-tertiary); font-size: 20px; }
+  .duration-badge { font-size: 11px; color: var(--color-text-secondary); background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: 12px; padding: 2px 8px; }
+  .tip-box { background: var(--color-background-info); border-left: 3px solid var(--color-border-info); border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; padding: 8px 12px; margin-top: 10px; font-size: 12px; color: var(--color-text-info); }
+</style>
+
+<h2 class="sr-only">Roadmap de développement — Journal Papier vers Journal Numérique Intelligent</h2>
+
+<div style="padding: 0.5rem 0 1.5rem;">
+
+  <!-- Phase 1 -->
+  <div class="phase-card">
+    <div class="phase-header">
+      <div style="width:36px;height:36px;border-radius:50%;background:#EAF3DE;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:14px;color:#3B6D11;flex-shrink:0">1</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span class="phase-title">MVP — Scan local</span>
+          <span class="phase-badge" style="background:#EAF3DE;color:#3B6D11">Priorité haute</span>
+          <span class="duration-badge"><i class="ti ti-clock" style="font-size:11px;vertical-align:-1px" aria-hidden="true"></i> 6–10 semaines</span>
+        </div>
+        <div class="phase-sub">Valider l'idée rapidement, sans backend ni cloud</div>
+      </div>
+    </div>
+
+    <div class="section-label">Technologies</div>
+    <div style="margin-bottom:10px">
+      <span class="tech-pill"><i class="ti ti-brand-android" aria-hidden="true"></i> Android (Kotlin)</span>
+      <span class="tech-pill">Google ML Kit OCR</span>
+      <span class="tech-pill">Room Database</span>
+      <span class="tech-pill">CameraX</span>
+      <span class="tech-pill">Jetpack Compose</span>
+    </div>
+
+    <div class="section-label">Tâches concrètes</div>
+    <div id="tasks-1">
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Créer le projet Android (Android Studio, SDK 24+)</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Intégrer CameraX pour capturer une photo de page</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Connecter Google ML Kit pour l'OCR (image → texte)</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Créer une base de données Room (entrée = texte + date + photo)</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Écran liste des entrées (triées par date)</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Écran lecture d'une entrée (mode lecture seule)</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Tester avec 5–10 vraies pages de journal</div></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-1" style="width:0%;background:#63B934"></div></div>
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true"></i> <strong>Débutant :</strong> commencer par un tutoriel CameraX officiel (Android Developers), puis ajouter ML Kit. Chaque étape = une branche Git.</div>
+  </div>
+
+  <div class="phase-connector"><i class="ti ti-arrow-down" aria-hidden="true"></i></div>
+
+  <!-- Phase 2 -->
+  <div class="phase-card">
+    <div class="phase-header">
+      <div style="width:36px;height:36px;border-radius:50%;background:#E6F1FB;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:14px;color:#185FA5;flex-shrink:0">2</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span class="phase-title">V1 — Compte & Cloud</span>
+          <span class="phase-badge" style="background:#E6F1FB;color:#185FA5">Priorité moyenne</span>
+          <span class="duration-badge"><i class="ti ti-clock" style="font-size:11px;vertical-align:-1px" aria-hidden="true"></i> 6–8 semaines</span>
+        </div>
+        <div class="phase-sub">Sécuriser les données, accès multi-appareils</div>
+      </div>
+    </div>
+
+    <div class="section-label">Technologies</div>
+    <div style="margin-bottom:10px">
+      <span class="tech-pill">Firebase Auth</span>
+      <span class="tech-pill">Firestore</span>
+      <span class="tech-pill">Firebase Storage</span>
+      <span class="tech-pill">Jetpack Security</span>
+    </div>
+
+    <div class="section-label">Tâches concrètes</div>
+    <div id="tasks-2">
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Créer un projet Firebase, activer Auth (email/Google)</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Écran inscription / connexion</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Synchronisation des entrées vers Firestore</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Upload des photos vers Firebase Storage</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Recherche full-text locale dans les textes OCR</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Édition du texte OCR (correction manuelle)</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Chiffrement de base des données sensibles en local</div></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-2" style="width:0%;background:#378ADD"></div></div>
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true"></i> <strong>Débutant :</strong> utiliser la console Firebase (interface graphique) pour créer les règles de sécurité Firestore avant d'écrire du code.</div>
+  </div>
+
+  <div class="phase-connector"><i class="ti ti-arrow-down" aria-hidden="true"></i></div>
+
+  <!-- Phase 3 -->
+  <div class="phase-card">
+    <div class="phase-header">
+      <div style="width:36px;height:36px;border-radius:50%;background:#EEEDFE;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:14px;color:#534AB7;flex-shrink:0">3</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span class="phase-title">V2 — IA & Analyse</span>
+          <span class="phase-badge" style="background:#EEEDFE;color:#534AB7">Différenciation</span>
+          <span class="duration-badge"><i class="ti ti-clock" style="font-size:11px;vertical-align:-1px" aria-hidden="true"></i> 8–12 semaines</span>
+        </div>
+        <div class="phase-sub">Transformer les textes en mémoire intelligente</div>
+      </div>
+    </div>
+
+    <div class="section-label">Technologies</div>
+    <div style="margin-bottom:10px">
+      <span class="tech-pill">API Claude / OpenAI</span>
+      <span class="tech-pill">Cloud Functions Firebase</span>
+      <span class="tech-pill">ML Kit NLP</span>
+      <span class="tech-pill">MPAndroidChart</span>
+    </div>
+
+    <div class="section-label">Tâches concrètes</div>
+    <div id="tasks-3">
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Résumé automatique des entrées via LLM (Cloud Function)</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Détection d'émotions basique (ML Kit ou API)</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Dashboard : courbe d'humeur sur 30 jours</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Nuage de mots fréquents par période</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Génération de "chapitres de vie" (regroupement par thème)</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Notifications intelligentes ("Il y a 1 an, tu écrivais...")</div></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-3" style="width:0%;background:#7F77DD"></div></div>
+    <div class="tip-box"><i class="ti ti-bulb" aria-hidden="true"></i> <strong>Débutant :</strong> commencer par un appel API simple (résumé d'une entrée) avant de construire tout le pipeline IA.</div>
+  </div>
+
+  <div class="phase-connector"><i class="ti ti-arrow-down" aria-hidden="true"></i></div>
+
+  <!-- Phase 4 -->
+  <div class="phase-card">
+    <div class="phase-header">
+      <div style="width:36px;height:36px;border-radius:50%;background:#FAEEDA;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:14px;color:#854F0B;flex-shrink:0">4</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span class="phase-title">Premium — Monétisation</span>
+          <span class="phase-badge" style="background:#FAEEDA;color:#854F0B">Revenu</span>
+          <span class="duration-badge"><i class="ti ti-clock" style="font-size:11px;vertical-align:-1px" aria-hidden="true"></i> 4–6 semaines</span>
+        </div>
+        <div class="phase-sub">Modèle freemium, abonnement mensuel/annuel</div>
+      </div>
+    </div>
+
+    <div class="section-label">Technologies</div>
+    <div style="margin-bottom:10px">
+      <span class="tech-pill">Google Play Billing</span>
+      <span class="tech-pill">iTextPDF / PDFBox</span>
+      <span class="tech-pill">RevenueCat</span>
+      <span class="tech-pill">AES-256 Encryption</span>
+    </div>
+
+    <div class="section-label">Tâches concrètes</div>
+    <div id="tasks-4">
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Intégrer Google Play Billing (abonnement mensuel)</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Export PDF : mise en page "livre de vie" (iTextPDF)</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Chiffrement avancé AES-256 des données cloud</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Paywall : limiter les scans gratuits (ex : 10/mois)</div></div>
+      <div class="task-row"><div class="task-check" onclick="toggle(this)"></div><div class="task-label">Page paramètres Premium avec gestion abonnement</div></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-4" style="width:0%;background:#BA7517"></div></div>
+  </div>
+
+  <!-- Progression globale -->
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-top:0.5rem;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div>
+      <div style="font-size:13px;color:var(--color-text-secondary)">Progression globale</div>
+      <div style="font-size:22px;font-weight:500;color:var(--color-text-primary)" id="global-pct">0%</div>
+    </div>
+    <div style="font-size:13px;color:var(--color-text-secondary);text-align:right">
+      <span id="done-count">0</span> tâches complétées sur <span id="total-count">0</span>
+    </div>
+    <div style="flex-basis:100%">
+      <div class="progress-bar" style="height:6px"><div class="progress-fill" id="prog-global" style="width:0%;background:linear-gradient(90deg,#63B934,#378ADD,#7F77DD,#BA7517)"></div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:12px;text-align:center">
+    <button onclick="sendPrompt('Donne-moi un plan détaillé pour démarrer la Phase 1 en tant que débutant Android')" style="font-size:13px">
+      Plan détaillé Phase 1 débutant ↗
+    </button>
+    <button onclick="sendPrompt('Quels sont les risques techniques principaux du projet journal numérique et comment les mitiger ?')" style="font-size:13px;margin-left:8px">
+      Risques & solutions ↗
+    </button>
+  </div>
+</div>
+
+<script>
+  function updateProgress() {
+    let total = 0, done = 0;
+    [1,2,3,4].forEach(i => {
+      const checks = document.querySelectorAll('#tasks-'+i+' .task-check');
+      const donei = document.querySelectorAll('#tasks-'+i+' .task-check.done').length;
+      total += checks.length; done += donei;
+      const pct = checks.length ? Math.round(donei/checks.length*100) : 0;
+      document.getElementById('prog-'+i).style.width = pct+'%';
+    });
+    document.getElementById('done-count').textContent = done;
+    document.getElementById('total-count').textContent = total;
+    const gp = total ? Math.round(done/total*100) : 0;
+    document.getElementById('global-pct').textContent = gp+'%';
+    document.getElementById('prog-global').style.width = gp+'%';
+  }
+  function toggle(el) {
+    el.classList.toggle('done');
+    const label = el.nextElementSibling;
+    label.classList.toggle('done');
+    if (el.classList.contains('done')) el.innerHTML = '<i class="ti ti-check" style="font-size:12px;color:#3B6D11" aria-hidden="true"></i>';
+    else el.innerHTML = '';
+    updateProgress();
+  }
+  updateProgress();
+</script>
